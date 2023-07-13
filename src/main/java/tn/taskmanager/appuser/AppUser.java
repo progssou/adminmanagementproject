@@ -1,21 +1,14 @@
 package tn.taskmanager.appuser;
 
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
-
+import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,8 +21,7 @@ import lombok.Setter;
 @Entity
 public class AppUser implements UserDetails {
 
-
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -76,11 +68,19 @@ public class AppUser implements UserDetails {
     public String getPassword() {
         return password;
     }
+    
+    // Setter
+ 	public void setPassword(String encodedPassword) {
+ 	    this.password = encodedPassword;
+ 	}
 
     @Override
     public String getUsername() {
         return email;
     }
+    
+
+    
 
     public String getFirstName() {
         return firstName;
@@ -110,14 +110,7 @@ public class AppUser implements UserDetails {
         return enabled;
     }
 
-	public String getEmail() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setPassword(String encodedPassword) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 
 }

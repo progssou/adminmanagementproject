@@ -17,7 +17,7 @@ public interface AppUserRepository
 
     @Transactional
     @Modifying
-    @Query("UPDATE AppUser a " +
+    @Query("UPDATE app_user a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
 

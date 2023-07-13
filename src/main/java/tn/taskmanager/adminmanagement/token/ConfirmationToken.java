@@ -22,7 +22,7 @@ import tn.taskmanager.appuser.AppUser;
 public class ConfirmationToken {
 
     @SequenceGenerator(
-            name = "confirmation_token_sequence",
+            name = "confirmation_token",
             sequenceName = "confirmation_token_sequence",
             allocationSize = 1
     )

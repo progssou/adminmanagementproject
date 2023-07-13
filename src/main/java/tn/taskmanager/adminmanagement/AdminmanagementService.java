@@ -41,7 +41,7 @@ public class AdminmanagementService {
                 )
         );
 
-        String link = "http://localhost:8080/api/v1/tasksmanagement/confirm?token=" + token;
+        String link = "http://localhost:8080/api/v1/adminmanagement/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));
@@ -68,7 +68,7 @@ public class AdminmanagementService {
 
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(
-                confirmationToken.getAppUser().getEmail());
+                confirmationToken.getAppUser().getUsername());
         return "confirmed";
     }
 

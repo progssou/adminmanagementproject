@@ -3,9 +3,7 @@ package tn.taskmanager.appuser;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +34,7 @@ public class AppUserService implements UserDetailsService {
 
     public String signUpUser(AppUser appUser) {
         boolean userExists = appUserRepository
-                .findByEmail(appUser.getEmail())
+                .findByEmail(appUser.getUsername())
                 .isPresent();
 
         if (userExists) {

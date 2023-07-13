@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfiguration {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .requestMatchers("/api/v*/tasksmanagement/**")
+                    .requestMatchers("/api/v*/adminmanagement/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()

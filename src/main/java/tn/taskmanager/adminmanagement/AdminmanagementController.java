@@ -3,20 +3,22 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/tasksmanagement")
+@RequestMapping(path = "api/v1/adminmanagement")
 @AllArgsConstructor
 public class AdminmanagementController {
-	private final AdminmanagementService adminmanagementService = new AdminmanagementService();
+	    
+	
+	    private final AdminmanagementService adminmanagementService = new AdminmanagementService();
 
-    @PostMapping
-    public String register(@RequestBody AdminmanagementRequest request) {
-        return adminmanagementService.register(request);
-    }
+	    @PostMapping
+	    public String register(@RequestBody AdminmanagementRequest request) {
+	        return adminmanagementService.register(request);
+	    }
 
-    @GetMapping(path = "confirm")
-    public String confirm(@RequestParam("token") String token) {
-        return adminmanagementService.confirmToken(token);
-    }
+	    @GetMapping(path = "confirm")
+	    public String confirm(@RequestParam("token") String token) {
+	        return adminmanagementService.confirmToken(token);
+	    }
     
     
   
