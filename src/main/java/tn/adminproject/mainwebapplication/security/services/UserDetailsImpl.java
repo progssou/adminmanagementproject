@@ -1,113 +1,88 @@
 package tn.adminproject.mainwebapplication.security.services;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import tn.adminproject.mainwebapplication.models.User;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
+public class UserDetailsImpl implements UserDetails {
+  private static final long serialVersionUID = 1L;
+  User user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+  private Collection<? extends GrantedAuthority> authorities;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import tn.adminproject.mainwebapplication.models.User;
+  public UserDetailsImpl(User user,
+                         Collection<? extends GrantedAuthority> authorities) {
+    this.user = user;
+    this.authorities = authorities;
+  }
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Service
-public class UserDetailsImpl implements UserDetails{
 
-	private static final long serialVersionUID = 1L;
+  public static UserDetailsImpl build(User user) {
+    List<GrantedAuthority> authorities = user.getRoles().stream()
+            .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+            .collect(Collectors.toList());
 
-	private Long id;
+    return new UserDetailsImpl(user,
+            authorities);
+  }
 
-	private String username;
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
 
-	private String email;
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
 
-	@JsonIgnore
-	private String password;
+  public User getUser () throws Exception {
+    return user;
+  }
 
-	private Collection<? extends GrantedAuthority> authorities;
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
-	public UserDetailsImpl(Long id, String username, String email, String password,
-			Collection<? extends GrantedAuthority> authorities) {
-		this.id = id;
-		this.username = username;
-		this.email = email;
-		this.password = password;
-		this.authorities = authorities;
-	}
+  @Override
+  public boolean isEnabled() {
+    return true;
+  }
 
-	public static UserDetailsImpl build(User user) {
-		List<GrantedAuthority> authorities = user.getRoles().stream()
-				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
-				.collect(Collectors.toList());
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    UserDetailsImpl user1 = (UserDetailsImpl) o;
+    return Objects.equals(user, user1);
+  }
 
-		return new UserDetailsImpl(
-				user.getId(), 
-				user.getUsername(), 
-				user.getEmail(),
-				user.getPassword(), 
-				authorities);
-	}
+  @Override
+  public String getPassword() {
+    // TODO Auto-generated method stub
+    return user.getPassword();
+  }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
 
-	public Long getId() {
-		return id;
-	}
 
-	public String getEmail() {
-		return email;
-	}
+  @Override
+  public String getUsername() {
+    // TODO Auto-generated method stub
+    return user.getUsername();
+  }
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	@Override
-	public String getUsername() {
-		return username;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		UserDetailsImpl user = (UserDetailsImpl) o;
-		return Objects.equals(id, user.id);
-	}
-
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
 }
