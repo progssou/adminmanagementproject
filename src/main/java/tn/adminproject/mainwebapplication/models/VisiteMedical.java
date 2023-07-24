@@ -20,6 +20,7 @@ import java.util.Date;
 public class VisiteMedical implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "VIS_SEQID")
     private String visSeqId;
 
@@ -37,12 +38,6 @@ public class VisiteMedical implements Serializable {
 
     @Column(name = "VIS_DECISION")
     private Integer visDecision;
-
-    @Column(name = "VIS_TYPE")
-    private Integer visType;
-
-    @Column(name = "CENT_CODE")
-    private Integer centCode;
 
     @Column(name = "VIS_PRESENCE", columnDefinition = "NUMBER(1) DEFAULT 0")
     private Integer visPresence;
@@ -64,9 +59,6 @@ public class VisiteMedical implements Serializable {
 
     @Column(name = "VIS_HEURE")
     private Date visHeure;
-
-    @Column(name = "IDT_MATAG")
-    private Integer idtMatag;
 
     @Column(name = "SYS_ANNEE")
     private Integer sysAnnee;
@@ -186,4 +178,16 @@ public class VisiteMedical implements Serializable {
     @JoinColumn(name = "TVM_CODE", referencedColumnName = "TVM_CODE")
     @JsonIgnore
     private TypeVisiteMed typeVisiteMed;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDT_MATAG")
+    private Idtagent idTagent;
+
+    @ManyToOne
+    @JoinColumn(name = "CENT_CODE")
+    private CentreMedical centreMedical;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MED_CODE")
+    private Medorg medorg;
 }

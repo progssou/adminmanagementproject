@@ -4,8 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,33 +13,34 @@ import java.util.Set;
 @Setter
 @ToString
 @EqualsAndHashCode
-@Table(name = "TYPE_VISITE_MED", schema = "GRH_TUN")
-public class TypeVisiteMed implements Serializable {
+@Table(name = "MED_SPEC", schema = "GRH_TUN")
+public class MedSpec implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TVM_CODE")
-    private Integer tvmCode;
+    @Column(name = "SPECM_CODE")
+    private Integer specmCode;
 
-    @Column(name = "TVM_DSGAR")
-    private String tvmDsgar;
+    @Column(name = "SPECM_DSG")
+    private String specmDsg;
 
-    @Column(name = "TVM_DSG")
-    private String tvmDsg;
+    @Column(name = "SPECM_DSGAR")
+    private String specmDsgar;
 
-    @Column(name = "TVM_NATURE")
-    private Integer tvmNature;
+    @Column(name = "SPECM_DUREE")
+    private Integer specmDuree;
 
     @Column(name = "UTIL_CREATED_BY")
     private String utilCreatedBy;
 
     @Column(name = "UTIL_CREATED_ON")
-    private LocalDateTime utilCreatedOn;
+    private Date utilCreatedOn;
 
     @Column(name = "UTIL_UPDATED_BY")
     private String utilUpdatedBy;
 
     @Column(name = "UTIL_UPDATED_ON")
-    private LocalDateTime utilUpdatedOn;
+    private Date utilUpdatedOn;
 
     @Column(name = "UTIL_REMOTEUSER")
     private String utilRemoteUser;
@@ -51,7 +51,8 @@ public class TypeVisiteMed implements Serializable {
     @Column(name = "PAGE_TRAC")
     private String pageTrac;
 
-    @OneToMany(mappedBy = "typeVisiteMed", fetch = FetchType.LAZY)
+    // Constructors, getters, setters, and other methods...
 
-    private Set<VisiteMedical> visiteMedicalList;
+    // Other methods...
 }
+
