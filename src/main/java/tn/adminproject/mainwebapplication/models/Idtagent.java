@@ -727,7 +727,7 @@ public class Idtagent implements Serializable {
     @OneToMany(mappedBy = "idTagent", cascade = CascadeType.ALL)
     private Set<Localite> localites;
 
-    @OneToMany(mappedBy = "idtMatagg", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idtMatag", cascade = CascadeType.ALL)
     private Set<Medorg> medorgList;
 
     @OneToOne(mappedBy = "idTagent", fetch = FetchType.LAZY) // The attribute name in the Emploi class that maps to this association

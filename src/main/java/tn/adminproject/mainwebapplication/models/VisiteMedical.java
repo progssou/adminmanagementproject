@@ -27,9 +27,6 @@ public class VisiteMedical implements Serializable {
     @Column(name = "VIS_CIN")
     private String visCin;
 
-    @Column(name = "MED_CODE")
-    private Integer medCode;
-
     @Column(name = "VIS_DATE")
     private LocalDateTime visDate;
 

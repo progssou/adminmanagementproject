@@ -106,9 +106,6 @@ public class Medorg implements Serializable {
     @Column(name = "ORGANISME_EMPLOYEUR")
     private String organismeEmployeur;
 
-    @Column(name = "IDT_MATAG")
-    private Integer idtMatag;
-
     @Column(name = "MED_TYP")
     private Integer medTyp;
 
@@ -124,8 +121,7 @@ public class Medorg implements Serializable {
     @Column(name = "COD_GOUV")
     private Integer codGouv;
 
-    @Column(name = "SPECM_CODE")
-    private Integer specmCode;
+
 
     @Column(name = "UTIL_CREATED_BY")
     private String utilCreatedBy;
@@ -160,8 +156,8 @@ public class Medorg implements Serializable {
     private Set<VisiteMedical> visiteMedicalList;
 
     @ManyToOne
-    @JoinColumn(name = "IDT_MATAGG", referencedColumnName = "IDT_MATAGG")
-    private Idtagent idtMatagg;
+    @JoinColumn(name = "IDT_MATAG", referencedColumnName = "IDT_MATAG")
+    private Idtagent idtMatag;
 
     @ManyToOne
     @JoinColumn(name = "LOC_CODE", referencedColumnName = "LOC_CODE", insertable = false, updatable = false)
