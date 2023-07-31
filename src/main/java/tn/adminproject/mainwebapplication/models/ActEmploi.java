@@ -6,24 +6,22 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Table(name = "ACT_EMPLOI", schema = "GRH_TUN")
+@IdClass(ActEmploiId.class) // Specify the composite key class
 public class ActEmploi implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ManyToOne
     @JoinColumn(name = "EMP_CODE", nullable = false)
     private Emploi emploi;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ManyToOne
     @JoinColumn(name = "ACTMED_CODE", nullable = false)
     private ActMed actMed;
