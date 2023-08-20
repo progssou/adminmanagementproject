@@ -83,7 +83,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers("/**","/user/**","/user/allUsers","/swagger-ui/**","/api/auth/**").permitAll()
-            .antMatchers("/**","/user/allUsers","/api/auth/**","/api/menu/**").permitAll()
+            .antMatchers("/**","/user/allUsers","/api/auth/**","/api/patients/**","/api/menu/**","/api/patients/addPatient","/patient-controller/addPatient" ).permitAll()
             .anyRequest().authenticated();
 
     http.authenticationProvider(authenticationProvider());

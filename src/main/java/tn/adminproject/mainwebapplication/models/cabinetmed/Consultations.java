@@ -26,7 +26,7 @@ public class Consultations {
 
     @ManyToOne
     @JoinColumn(name = "matPat") // Colonne utilisée pour la relation entre Consultation et Patients
-    private Patients patient;
+    private Patient patient;
 
 
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true)

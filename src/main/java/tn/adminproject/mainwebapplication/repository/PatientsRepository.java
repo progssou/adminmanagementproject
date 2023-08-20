@@ -1,17 +1,22 @@
 package tn.adminproject.mainwebapplication.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import tn.adminproject.mainwebapplication.models.cabinetmed.Patients;
-
+import org.springframework.stereotype.Repository;
+import tn.adminproject.mainwebapplication.models.cabinetmed.Patient;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface PatientsRepository extends JpaRepository<Patients,Long> {
+@Repository
+public interface PatientsRepository extends JpaRepository<Patient, Long> {
 
-    List<Patients> findAll();
+    List<Patient> findAll();
 
-    Optional<Patients> findBymatPat(long matPat);
-    Optional<Patients> findByNomContains(String nom); // Patients findByNomContains
+    Patient save(Patient patient);
+
+    Patient getPatientsById(Long id);
+
+
+
+    void deletePatientsById(Long id);
 
 }
