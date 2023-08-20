@@ -1,9 +1,6 @@
 package tn.adminproject.mainwebapplication.models;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -33,6 +30,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 
 	@Size(max = 20)
 	private String nom;
