@@ -1,5 +1,6 @@
 package tn.adminproject.mainwebapplication.models.cabinetmed;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
@@ -24,15 +25,13 @@ public class Consultations {
 
     private String dialogueConsultation;
 
-    @ManyToOne
-    @JoinColumn(name = "matPat") // Colonne utilisée pour la relation entre Consultation et Patients
-    private Patient patient;
-
 
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Certificats> certificates;
 
     @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Ordonnances> ordonnances;
 
 }

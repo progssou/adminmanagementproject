@@ -1,5 +1,6 @@
 package tn.adminproject.mainwebapplication.models.cabinetmed;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 
@@ -20,6 +21,7 @@ public class Certificats {
     private String contenuCertificat;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "numConsultation") // Colonne utilisée pour la relation entre Certificat et Consultation
     private Consultations consultation;
 }

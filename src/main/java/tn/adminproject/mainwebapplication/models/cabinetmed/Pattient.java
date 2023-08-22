@@ -3,52 +3,39 @@ package tn.adminproject.mainwebapplication.models.cabinetmed;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Getter
 @Setter
+@Getter
 @ToString
 @EqualsAndHashCode
-
-@Table(name = "Patients")
-
-public class Patients {
-
+@Entity
+public class Pattient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long matPat;
+    @Column(name = "matPat") // Specify the column name explicitly
 
-    @Size(max = 200)
+    private Integer matPat;
+
     private String nom;
 
-
-    @Size(max = 200)
     private String prenomPat;
 
-    @Size(max = 200)
     private String adressePat;
 
-    @Email
-    @Size(max=50)
     private String emailPat;
 
     @Temporal(TemporalType.DATE)
     private Date birthDatePat ;
 
-    @Size(max=20)
-    private String phoneNumberPat;
+    private Integer phoneNumberPat;
 
     private String genrePat;
 
-    @Size(max=10)
     private String cinPat;
 
-    @Size(max=200)
     private String profPat;
 }
